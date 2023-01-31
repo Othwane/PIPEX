@@ -22,6 +22,8 @@ void	ft_printf(const char *specif, ...);
 char    **getpath(char **envp);
 char    *findpath(char *command, char **envp);
 char	*ft_strchr(char *str, int c);
+char	*ft_substr(char *s, int start, int len);
+char	*ft_strtrim(char *s1, char *set);
 
 void    childproc(t_data *data, char **argv, char **envp);
 void    parentproc(t_data *data, char **argv, char **envp);

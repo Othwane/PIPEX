@@ -6,9 +6,13 @@ char    **getpath(char **envp)
     char    **tmpath;
     
     i = 0;
+    if (!envp[i])
+    {
+        tmpath = ft_split("/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin", ':');
+    }
     while (envp[i] != NULL)
     {
-        if (ft_strncmp(envp[i], "PATH=", 5))
+        if (!ft_strncmp(envp[i], "PATH=", 5))
             tmpath = ft_split(envp[i] + 5, ':');
         i++;
     }
@@ -27,8 +31,6 @@ char    *findpath(char *command, char **envp)
     {
         if (!access(command, F_OK))
             return (command);
-        else
-            return (0);
     }
     else
     {
@@ -37,7 +39,7 @@ char    *findpath(char *command, char **envp)
         {
             slash = ft_strjoin(splitenv[i], "/");
             jcommand = ft_strjoin(slash, command);
-            if (!access(jcommand , F_OK))
+            if (access(jcommand , F_OK) == 0)
                 return (jcommand);
             i++;
         }

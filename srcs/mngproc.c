@@ -11,12 +11,12 @@ void    childproc(t_data *data, char **argv, char **envp)
     data->cmdpath1 = findpath(data->cmd1[0], envp);
     if (!data->cmdpath1)
     {
-        ft_printf("pipex: %s:command not found", data->cmd1[0]);
+        ft_printf("pipex: %s: command not found\n", data->cmd1[0]);
         exit(127);
     }
     if (access(data->cmdpath1, X_OK))
     {
-        ft_printf("pipex: %s: Permission denied", data->cmd1[0]);
+        ft_printf("pipex: %s: Permission denied\n", data->cmd1[0]);
         exit(126);
     }
     execve(data->cmdpath1, data->cmd1, envp);
@@ -33,13 +33,13 @@ void    parentproc(t_data *data, char **argv, char **envp)
     data->cmdpath2 = findpath(data->cmd2[0], envp);
     if (!data->cmdpath2)
     {
-        ft_printf("pipex: %s:command not found", data->cmd2[0]);
+        ft_printf("pipex: %s: command not found\n", data->cmd2[0]);
         exit(127);
     }
 
     if (access(data->cmdpath2, X_OK))
     {
-        ft_printf("pipex: %s: Permission denied", data->cmd2[0]);
+        ft_printf("pipex: %s: Permission denied\n", data->cmd2[0]);
         exit(126);
     }
     execve(data->cmdpath2, data->cmd2, envp);

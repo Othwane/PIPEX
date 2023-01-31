@@ -54,3 +54,45 @@ char	*ft_strchr(char *str, int c)
 		return ((char *)str + i);
 	return (NULL);
 }
+
+char	*ft_strtrim(char *s1, char *set)
+{
+	char	*str;
+	int	len;
+	int		i;
+
+	i = 0;
+	len = ft_strlen(s1);
+	if (!set || !s1)
+		return (NULL);
+	while (s1[i] && ft_strchr(set, s1[i]))
+		i++;
+	while (len > 0 && ft_strchr(set, s1[len - 1]))
+		len--;
+	str = ft_substr(s1, i, len - i);
+	return (str);
+}
+char	*ft_substr(char *s, int start, int len)
+{
+	char	*p;
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	if (ft_strlen(s) < start)
+		len = 0;
+	if (ft_strlen(s) < len)
+		len = ft_strlen(s) - start;
+	p = malloc(len + 1);
+	if (!p)
+		return (NULL);
+	while (len > 0 && s[start + i])
+	{
+		p[i] = s[start + i];
+		i++;
+		len--;
+	}
+	p[i] = '\0';
+	return (p);
+}

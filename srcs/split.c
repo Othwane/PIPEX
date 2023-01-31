@@ -72,12 +72,23 @@ char    **ft_split(char const *s, char c)
 char    **pipesplit(char *s)
 {
     char    **retu;
+    char separat;
+	int i;
 
-    if (ft_strchr(s, '\''))
-        retu = ft_split(s, '\'');
-    else if (ft_strchr(s, '\"'))
-        retu = ft_split(s, '\"');
-    else
-        retu = ft_split(s, ' ');
+	i= 0;
+	separat = ' ';
+    while (s[i])
+	{
+		if (s[i] == '\'' || s[i] == '\"')
+		{
+			separat = s[i];
+			break;
+		}
+		i++;
+	}
+
+    retu = ft_split(s, separat);
+    retu[0] = ft_strtrim(retu[0], " ");
+
     return (retu);
 }
