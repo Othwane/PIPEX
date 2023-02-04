@@ -1,8 +1,8 @@
 NAME = pipex
 
-SRCS = $(wildcard srcs/*.c)
+SRCS = srcs/pipex.c srcs/utils.c srcs/argcheck.c srcs/cmdchecker.c srcs/openfds.c srcs/pipe_fork.c srcs/procmng.c srcs/split.c srcs/ft_printf.c
 
-OBJS = $(patsubst %.c, %.o, $(SRCS))
+OBJS = ${SRCS:.c=.o}
 
 CC = cc
 
