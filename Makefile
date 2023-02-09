@@ -18,10 +18,10 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS) -o $(NAME) $(OBJS)
 
-claen:
+clean:
 	$(RM) $(OBJS)
 
-fclean: claen
+fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all

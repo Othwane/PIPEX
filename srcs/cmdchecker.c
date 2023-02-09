@@ -6,7 +6,7 @@
 /*   By: omajdoub <omajdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 15:55:55 by omajdoub          #+#    #+#             */
-/*   Updated: 2023/02/04 18:44:44 by omajdoub         ###   ########.fr       */
+/*   Updated: 2023/02/09 00:53:07 by omajdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,54 @@ char	**getpath(char **envp)
 	return (tmpath);
 }
 
+char	*joinslash_cmd(char *envsplited, char *cmd)
+{
+	char	*command;
+	char	*slash;
+
+	slash = ft_strjoin(envsplited, "/");
+	command = ft_strjoin(slash, cmd);
+	free(slash);
+	free(envsplited);
+	return (command);
+}
+
+char	*checkcmd(char **envp, char **envsplited, char *cmd)
+{
+	int		i;
+	char	*command;
+
+	i = 0;
+	envsplited = getpath(envp);
+	while (envsplited[i])
+	{
+		command = joinslash_cmd(envsplited[i], cmd);
+		if (access(command, F_OK) == 0)
+		{
+			free(envsplited);
+			return (command);
+		}
+		i++;
+		free(command);
+	}
+	free(envsplited);
+	return (0);
+}
+
 char	*findpath(char *cmd, char **envp)
 {
 	int		i;
 	char	**envsplited;
-	char	*slash;
 	char	*command;
 
 	i = 0;
+	envsplited = NULL;
+	command = NULL;
 	if (ft_strchr(cmd, '/'))
 	{
 		if (!access(cmd, F_OK))
 			return (cmd);
 	}
-	else
-	{
-		envsplited = getpath(envp);
-		while (envsplited[i])
-		{
-			slash = ft_strjoin(envsplited[i], "/");
-			command = ft_strjoin(slash, cmd);
-			if (access(command, F_OK) == 0)
-				return (command);
-			i++;
-		}
-	}
-	return (0);
+	command = checkcmd(envp, envsplited, cmd);
+	return (command);
 }

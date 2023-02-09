@@ -6,7 +6,7 @@
 /*   By: omajdoub <omajdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 19:51:57 by omajdoub          #+#    #+#             */
-/*   Updated: 2023/02/04 20:05:25 by omajdoub         ###   ########.fr       */
+/*   Updated: 2023/02/08 23:46:51 by omajdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ void	open_inf(t_data *data, char **argv);
 void	open_outf(t_data *data, char **argv);
 void	pipe_fork(t_data *data);
 void	argscheck(int argc);
+void	deletespace(char *data);
 #endif

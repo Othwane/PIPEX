@@ -6,7 +6,7 @@
 /*   By: omajdoub <omajdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 16:30:08 by omajdoub          #+#    #+#             */
-/*   Updated: 2023/02/04 18:51:04 by omajdoub         ###   ########.fr       */
+/*   Updated: 2023/02/09 00:12:15 by omajdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,45 +57,15 @@ int	ft_strncmp(char *s1, char *s2, int n)
 	return (0);
 }
 
-char	*ft_substr(char *s, int start, int len)
+void	deletespace(char *data)
 {
-	char	*p;
-	int		i;
+	int	i;
 
 	i = 0;
-	if (!s)
-		return (NULL);
-	if (ft_strlen(s) < (int)start)
-		len = 0;
-	if (ft_strlen(s) < len)
-		len = ft_strlen(s) - start;
-	p = malloc(len + 1);
-	if (!p)
-		return (NULL);
-	while (len > 0 && s[start + i])
+	while (data[i])
 	{
-		p[i] = s[start + i];
+		if (data[i] == ' ')
+			data[i] = '\0';
 		i++;
-		len--;
 	}
-	p[i] = '\0';
-	return (p);
-}
-
-char	*ft_strtrim(char *s1, char *set)
-{
-	char	*str;
-	int		len;
-	int		i;
-
-	i = 0;
-	len = ft_strlen(s1);
-	if (!set || !s1)
-		return (NULL);
-	while (s1[i] && ft_strchr(set, s1[i]))
-		i++;
-	while (len > 0 && ft_strchr(set, s1[len - 1]))
-		len--;
-	str = ft_substr(s1, i, len - i);
-	return (str);
 }

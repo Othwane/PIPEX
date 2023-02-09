@@ -6,7 +6,7 @@
 /*   By: omajdoub <omajdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 16:36:08 by omajdoub          #+#    #+#             */
-/*   Updated: 2023/02/04 19:05:33 by omajdoub         ###   ########.fr       */
+/*   Updated: 2023/02/08 20:10:09 by omajdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,6 @@ char	**pipesplit(char *s)
 		i++;
 	}
 	retu = ft_split(s, separat);
-	retu[0] = ft_strtrim(retu[0], " ");
+	deletespace(retu[0]);
 	return (retu);
 }
